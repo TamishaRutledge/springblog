@@ -40,14 +40,14 @@ public class PostController {
     @GetMapping("/posts/create")
     public String showPostForm(Model vModel) {
         vModel.addAttribute("post", new Post());
-        return "posts/show";
+        return "posts/create";
     }
 
     //    POST	/ads/create	create a new post
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post) {
         Post savePost =  postService.save(post);
-        return "redirect:/posts" + savePost.getId();
+        return "redirect:/posts/" + savePost.getId();
     }
 
     @GetMapping("/posts/{id}/update")

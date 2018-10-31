@@ -4,14 +4,18 @@
 <body>
 <div th:replace="fragments/navbar :: myNav"></div>
 
-<form th:action="@{/posts/{id}/update(id=${post.id})}" th:method="post" th:object="${post}">
-    Title:
-    <input th:field="*{title}" />
+<form class="update" th:action="@{/posts/{id}/update(id=${post.id})}" th:method="post" th:object="${post}">
+    <div class="form-group">
+        <label for="title">Title:</label>
+        <input class="form-control" id="title" th:field="*{title}" />
+    </div>
     <br />
-    Description:
-    <input th:field="*{body}" />
-    <br />
-    <input type="submit" />
+    <div class="form-group">
+        <label for="body">Body:</label>
+        <textarea class="form-control" id="body" th:field="*{body}" rows="3"></textarea>
+        <br />
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Submit</button>
 </form>
 
 <div th:replace="fragments/footer :: footer"></div>

@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: head('List of posts')">
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-
-</head>
+<head th:replace="fragments/header :: head('All The Posts')"></head>
 <description>
     <div th:replace="fragments/navbar :: myNav"></div>
-    <h1>List of posts</h1>
-
-    <div th:each="post : ${posts}">
-        <h2 th:text="${post.title}"></h2>
-        <p th:text="${post.body}"></p>
+    <h1>All the posts!</h1>
+    <hr />
+    <div class="rows">
+        <div class="col-sm-6">
+            <div class="card">
+    <div class="card-body" th:each="post : ${posts}">
+        <h3 class="card-title" th:text="${post.title}"></h3>
+        <p class="card-text" th:text="${post.body}"></p>
+        <a th:href="@{/posts/{id}/update(id=${post.id})}"><input type="button" value="Edit" class="btn btn-primary" /></a>
+        <input type="button" value="Delete" class="btn btn-danger"/>
     </div>
-
+            </div>
+        </div>
+    </div>
     <div th:replace="fragments/footer :: footer"></div>
 </description>
 </html>

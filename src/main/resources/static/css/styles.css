@@ -1,0 +1,23 @@
+body {
+    background-color: #2f8047;
+    color: whitesmoke;
+    padding: 1%;
+}
+
+.create {
+    padding: 1%;
+}
+
+.update {
+    padding: 1%;
+}
+ #title {
+     margin-bottom: 1%;
+ }
+
+ .card-body {
+     background-color: #5f2b80;
+     border: dashed dimgray;
+     padding-bottom: 1%;
+
+ }
