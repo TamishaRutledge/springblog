@@ -28,6 +28,16 @@ public class PostService {
 
     }
 
+    public Post remove(Post post){
+        post.getId();
+        posts.remove(post);
+        return post;
+    }
+
+    public Post deletePost(Post post){
+        return posts.set(post.getId() -1, post);
+    }
+
     public Post findOne(int id){
         return posts.get(id - 1);
     }

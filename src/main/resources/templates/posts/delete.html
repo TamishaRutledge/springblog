@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: head('Posts')"></head>
+<body>
+<div th:replace="fragments/navbar :: myNav"></div>
+
+<form class="update" th:action="@{/posts/{id}/delete(id=${post.id})}" th:method="post" th:object="${post}">
+    <div class="form-group">
+        <label for="title">Title:</label>
+        <input class="form-control" id="title" th:field="*{title}" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="body">Body:</label>
+        <textarea class="form-control" id="body" th:field="*{body}" rows="3"></textarea>
+        <br />
+    </div>
+    <button type="submit" class="btn btn-danger mb-2">You Sure You Wanna Do That?</button>
+</form>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
