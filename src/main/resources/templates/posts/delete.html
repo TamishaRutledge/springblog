@@ -15,9 +15,24 @@
         <textarea class="form-control" id="body" th:field="*{body}" rows="3"></textarea>
         <br />
     </div>
-    <button type="submit" class="btn btn-danger mb-2">You Sure You Wanna Do That?</button>
+    <input type="hidden" id="postId" th:value="${post.id}" />
+    <button type="submit" id="rm-post" class="btn btn-danger mb-2">Delete</button>
 </form>
 
 <div th:replace="fragments/footer :: footer"></div>
+<script>
+    let postId = document.querySelector("#postId");
+    let rmbtn = document.querySelector("#rm-post");
+
+    rmbtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        let res = confirm("You sure you wanna delete?");
+        if(res){
+            fetch(`/posts/${postId}/delete`, {
+                method: "post"
+            });
+        }
+    });
+</script>
 </body>
 </html>

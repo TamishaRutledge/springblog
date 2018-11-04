@@ -1,50 +1,41 @@
 package com.codeup.springblog;
+
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
+import com.codeup.springblog.Post;
+import com.codeup.springblog.PostRepository;
 import java.util.List;
 
 @Service
 public class PostService {
 
-    private List<Post> posts;
 
-    public PostService(){
-        posts = new ArrayList<>();
-        createPosts();
+    private PostRepository postRepository;
+
+    public PostService(PostRepository postRepo){
+        this.postRepository = postRepo;
     }
 
-    public List<Post> findAll(){
-        return posts;
+    public Iterable<Post> findAll(){
+        return postRepository.findAll();
     }
 
-    public Post save(Post post){
-        post.setId(posts.size() + 1);
-        posts.add(post);
-        return post;
+    public Post saveOrUpdate(Post post){
+        return postRepository.save(post);
     }
 
-    public Post update(Post post){
-        return posts.set(post.getId() -1, post);
-
-    }
-
-    public Post remove(Post post){
-        post.getId();
-        posts.remove(post);
-        return post;
-    }
-
-    public Post deletePost(Post post){
-        return posts.set(post.getId() -1, post);
-    }
 
     public Post findOne(int id){
-        return posts.get(id - 1);
+        return postRepository.findOne((long) id);
     }
 
-    private void createPosts(){
-        this.save(new Post( 1,"The First Post", "What does the fox say?"));
-        this.save(new Post( 2,"I gotta say", "Today was a good day."));
-        this.save(new Post( 3,"Another One", "The keys to life according to DJ Khaled."));
+
+    public void delete(int id){
+        postRepository.delete((long) id);
     }
+
+
+    public List<Post> search(String term) {
+        return postRepository.searchByTitleOrDesc(term);
+    }
+
 }

@@ -4,6 +4,12 @@ body {
     padding: 1%;
 }
 
+#nav {
+    background-color: #5f2b80;
+    border: dashed white;
+    padding-bottom: 1%;
+}
+
 .create {
     padding: 1%;
 }
