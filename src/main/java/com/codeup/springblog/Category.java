@@ -46,7 +46,7 @@ public class Category {
         this.name = name;
     }
 
-    public List<Post> getPost() {
+    public List<Post> getPosts() {
         return posts;
     }
 

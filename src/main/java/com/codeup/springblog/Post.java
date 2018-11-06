@@ -17,7 +17,11 @@ public class Post {
     @Column(nullable = false)
     private String body;
 
-    @OneToOne
+//    @OneToOne
+//    private User user;
+
+    @ManyToOne
+    @JoinColumn (name = "user_id")
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")

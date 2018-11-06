@@ -14,6 +14,10 @@
     <label for="body">Body:</label>
     <textarea class="form-control" id="body" th:field="*{body}" rows="3"></textarea>
     <br />
+    <th:block th:each="category : ${categories}">
+        <input type="checkbox" name="categories" th:value="${category.id}"/>
+        <label th:text="${category.name}"></label>
+    </th:block>
     </div>
     <button type="submit" class="btn btn-primary mb-2">Submit</button>
 </form>

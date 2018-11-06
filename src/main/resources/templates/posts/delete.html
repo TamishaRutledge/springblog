@@ -22,15 +22,15 @@
 <div th:replace="fragments/footer :: footer"></div>
 <script>
     let postId = document.querySelector("#postId");
-    let rmbtn = document.querySelector("#rm-post");
+    let rmbtn = document.querySelector("#rmPost");
 
     rmbtn.addEventListener('click', function (e) {
         e.preventDefault();
         let res = confirm("You sure you wanna delete?");
         if(res){
             fetch(`/posts/${postId}/delete`, {
-                method: "post"
-            });
+                method: "POST"
+            }).then( res => res.json()).then( () => location.href = "/posts");
         }
     });
 </script>

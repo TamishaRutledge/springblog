@@ -1,6 +1,7 @@
 package com.codeup.springblog;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -49,7 +50,9 @@ public class PostController {
     //    POST	/posts/create	create a new post
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post, @RequestParam(value = "categories" , required = false) List<Category> cats) {
-        post.setUser(userRepository.findOne(1L));
+        User logUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        post.setUser(userRepository.findOne(logUser.getId()));
         post.setCategories(cats);
         Post savedPost = postService.saveOrUpdate(post);
         return "redirect:/posts/" + savedPost.getId();
@@ -74,9 +77,10 @@ public class PostController {
         return "posts/index";
     }
 
-    @PostMapping("/posts/{id}/delete")
-    public void rmPost(@PathVariable int id){
-        postService.delete(id);
-    }
+//    @DeleteMapping("/posts/{id}/delete")
+//    public String  rmPost(@PathVariable int id){
+//        postService.delete(id);
+//        return "/posts/index";
+//    }
 
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head></head>
 <body>
 
@@ -13,12 +13,22 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/posts">Home <span class="sr-only">(current)</span></a>
             </li>
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+                <th:block th:text="${'Welcome, ' + #authentication.principal.username}"/>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="/posts/create">Create A New Post</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Post Categories</a>
             </li>
+            <li sec:authorize="!isAuthenticated()">
+                <a href="/login" class="btn btn-success">Login</a>
+            </li>
+            <li sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" th:method="post">
+                    <button class="btn btn-danger">Logout</button>
+                </form>
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
