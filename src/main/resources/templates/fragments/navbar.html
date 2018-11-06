@@ -19,8 +19,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="/posts/create">Create A New Post</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Post Categories</a>
+            <li>
+                <form th:action="@{/sign-up}" th:method="post">
+                    <button class="btn btn-info">Sign-Up</button>
+                </form>
             </li>
             <li sec:authorize="!isAuthenticated()">
                 <a href="/login" class="btn btn-success">Login</a>
@@ -29,8 +31,9 @@
                 <form th:action="@{/logout}" th:method="post">
                     <button class="btn btn-danger">Logout</button>
                 </form>
+            </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
+        <form class="form-inline mr-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
